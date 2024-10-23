@@ -28,6 +28,7 @@ hd = readr::read_csv("historical_spending.csv", col_names = TRUE)
 
 # Summary of the historical data
 
+This is a summary of our data set. It shows statistical data such as the minimum and the maximum values for each column, their mean and median values. This way we can easily and quickly visualize these types of data for our dataset. 
 
 ```{r}
 hd %>% summary()
