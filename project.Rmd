@@ -1,0 +1,94 @@
+---
+title: "Assignment Scientific Methods"
+author: "Filip Lobpreis"
+date: "2024-10-23"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(cowplot)
+library(gridExtra)
+library(magrittr)
+library(tidyverse)
+```
+
+
+
+
+
+
+
+
+We are loading the historical spending data from [github](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-13/historical_spending.csv)
+```{r}
+hd = readr::read_csv("historical_spending.csv", col_names = TRUE)
+```
+
+# Summary of the historical data
+
+```{r}
+hd %>% summary()
+```
+
+
+# Data visualization
+
+```{r}
+hd %>%
+  pivot_longer(PercentCelebrating:GiftCards, names_to = 'param', values_to = 'value') %>%
+  ggplot() +
+  aes(x = Year) +
+  aes(y = value) +
+  geom_point() +
+  stat_smooth(method='lm') +
+  scale_x_continuous(breaks = c(2010, 2015, 2020)) +
+  facet_wrap(~param, scales='free') +
+  labs(title = "Linear regression over the historical measurements from 2010 until 2022")
+```
+
+```{r}
+hd %>%
+  pivot_longer(PercentCelebrating:GiftCards, names_to = 'param', values_to = 'value') %>%
+  ggplot() +
+  aes(y = value) +
+  geom_boxplot() +
+  facet_wrap(~param, scales='free') +
+  scale_x_continuous(breaks = c()) +
+  labs(title = "Linear regression over the historical measurements from 2010 until 2022")
+```
+We are comparing all the categories throughout the years to see how the trend
+changes. We can see, that people are buying more things while the time
+progresses. The only category that is decreasing is the percentage of people
+celebrating. This an be justified by the corona pandemic. However, this trend
+occurred even before the pandemic started in 2020.
+
+# Testing
+
+```{r}
+t.test(hd$GiftCards, hd$GreetingCards)
+```
+
+Using the T-test we can determine, that the percentage of people that are buying
+the gift cards and greeting cards is not the same. The P-value shows a significant
+difference in the two means. Even thou the amount of people buying the cards increases
+throughout the years, the percentage is not the same. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
