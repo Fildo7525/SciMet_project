@@ -64,9 +64,9 @@ hd %>%
   geom_boxplot() +
   facet_wrap(~param, scales='free') +
   scale_x_continuous(breaks = c()) +
-  labs(title = "Linear regression over the historical measurements from 2010 until 2022")
+  labs(title = "Box plots of different categories")
 ```
-
+With box plot it is possible to see mean of the variables,outliers and the distribution of the data from the mean point.The box represent 50% of the data and the quartiles represent 25%. Bigger box mean more widely distributed data.
 
 
 # Testing
