@@ -10,8 +10,6 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
-library(cowplot)
-library(gridExtra)
 library(magrittr)
 library(tidyverse)
 ```
@@ -29,6 +27,7 @@ hd = readr::read_csv("historical_spending.csv", col_names = TRUE)
 ```
 
 # Summary of the historical data
+
 
 ```{r}
 hd %>% summary()
@@ -49,6 +48,12 @@ hd %>%
   facet_wrap(~param, scales='free') +
   labs(title = "Linear regression over the historical measurements from 2010 until 2022")
 ```
+We are comparing all the categories throughout the years to see how the trend
+changes. We can see, that people are buying more things while the time
+progresses. The only category that is decreasing is the percentage of people
+celebrating. This an be justified by the corona pandemic. However, this trend
+occurred even before the pandemic started in 2020.
+
 
 ```{r}
 hd %>%
@@ -60,11 +65,8 @@ hd %>%
   scale_x_continuous(breaks = c()) +
   labs(title = "Linear regression over the historical measurements from 2010 until 2022")
 ```
-We are comparing all the categories throughout the years to see how the trend
-changes. We can see, that people are buying more things while the time
-progresses. The only category that is decreasing is the percentage of people
-celebrating. This an be justified by the corona pandemic. However, this trend
-occurred even before the pandemic started in 2020.
+
+
 
 # Testing
 
